@@ -1,5 +1,4 @@
 const app = document.getElementById("app");
-
 viewHome(app);
 
 // FUNÇÕES DE VIEW
@@ -34,10 +33,10 @@ function listView(title, list = [], app) {
   //criação da lista não ordenada
   var ul = document.createElement("ul");
   ul.classList.add("list");
-
+  console.log(list)
   //verificando se existem elemtos na lista que por default recebe um array vazio
   if (list) {
-    list.map((element) => {
+    list.forEach((element) => {
       //criando o li
       var li = document.createElement("li");
       li.classList.add("list-item");
@@ -112,6 +111,7 @@ function listView(title, list = [], app) {
 
 //CONTROLE DE EVENTOS
 
+
 //Listagem dos corretores cadastrados
 document.querySelector(".list-corretor").addEventListener("click", (e) => {
   e.preventDefault();
@@ -119,6 +119,15 @@ document.querySelector(".list-corretor").addEventListener("click", (e) => {
   //Logica para recuperar dados dos corretores do banco de dados
 
   listView("Corretores", corretores, app);
+});
+
+//Listagem dos clientes cadastrados
+document.querySelector(".list-cliente").addEventListener("click", async (e) => {
+  e.preventDefault();
+ 
+ await  fetch("http://192.168.1.222:5000/clientes")
+    .then(data => data.json())
+    .then(clientes => listView("Clientes", clientes.clientes, app))
 });
 
 //Pagina Incial - Buscar Clientes
