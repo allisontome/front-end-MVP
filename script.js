@@ -35,10 +35,10 @@ function listView(title, list = [], app) {
   //criação da lista não ordenada
   var ul = document.createElement("ul");
   ul.classList.add("list");
-
+  console.log(list);
   //verificando se existem elemtos na lista que por default recebe um array vazio
   if (list) {
-    list.map((element) => {
+    list.forEach((element) => {
       //criando o li
       var li = document.createElement("li");
       li.classList.add("list-item");
