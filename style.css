@@ -1,3 +1,9 @@
+@import url("./styles/botoes.css");
+@import url("./styles/home.css");
+@import url("./styles/modal.css");
+@import url("./styles/list.css");
+
+
 * {
     margin: 0;
     padding: 0;
@@ -8,13 +14,27 @@ a, input, ul, li {
     text-decoration: none;
     border: none;
     list-style-type: none;
+    outline: none;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 :root {
-    --primary: #000000;
-    --secondary: #ffffff;
-    --edit: #bfffb8;
-    --delete: #ff9696;
+    --black: #0B0B0D;
+    --blue: #24c0eb;
+    --light-green: #85e6c0;
+    --light-gray: #daf3ea;
+    --white: #f7f4e8;
+    --red: #f46472;
+    --blue-secondary: #8be4fd;
+    --green: #51bd9c;
+}
+
+.hidden {
+    display: none;
 }
 
 body {
@@ -32,67 +52,20 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--blue);
 }
 
 footer {
-    border-top: 1px solid lightgrey;
     height: 15%;
     width: 100%;
+    background-color: var(--blue-secondary);
 }
-
-
-/*
-    Estilos auxiliares
-*/
-
-.hidden {
-    display: none;
-}
-
 
 /*
     Estilos Básicos
 */
 
-.btn {
-    color: black;
-    padding: .5rem 2rem;
-    font-weight: bold;
-    font-size: 1rem;
-}
 
-.btn:hover {
-    cursor: pointer;
-}
-
-.btn-primary {
-    background-color: var(--primary);
-    color: var(--secondary);
-    border-radius: .5rem;
-}
-
-.btn-primary:hover{
-    background-color: var(--secondary);
-    color: var(--primary);
-    border: 1px solid var(--primary);
-    transition: .5s;
-}
-
-.btn-link {
-    text-decoration: underline;
-}
-
-.btn-link:hover {
-    opacity: 70%;
-}
-
-.btn-edit {
-    background-color: var(--edit);
-}
-
-.btn-delete {
-    background-color: var(--delete);
-}
 
 .input {
     padding: .5rem 1rem;
@@ -104,83 +77,12 @@ footer {
 
 /*********************************************************/
 
-/*Estilo da Home*/
-
-#form-home{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-#form-home label {
-    font-size: 3rem;
-    font-weight: bold;
-    align-self: center;
-}
 
 /*Modais*/
 
-.modal {
-    height: 60vh;
-    width: 50vw;
-    border: 1px solid var(--primary);
-    border-radius: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 0;
 
-}
 
-.modal .title {
-    margin-bottom: 1rem;
-}
 
-.list {
-    width: 100%;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .5rem;
-}
-
-.list-item {
-        width: 90%;
-        display: grid;
-        grid-template-columns: 80% 1fr;
-        grid-template-rows: 1fr;
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
-        justify-content: space-between;
-        border: 1px solid lightgray;
-        padding: .5rem;
-}
-
-.list-item .data {
-    width: 80%;
-    display: grid;
-    grid-template-columns: 65% 1fr;
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    justify-content: space-between;
-    row-gap: .5rem;
-}
-.list-item .actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.list-item .actions .btn {
-    font-size: .8rem;
-    padding: .3rem .1rem;
-}
-
-.list-item span {
-    font-size: 1rem;
-}
 
 .navbar {
     height: 100%;

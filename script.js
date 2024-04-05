@@ -1,5 +1,5 @@
 const app = document.getElementById("app");
-
+var url = "http://127.0.0.1:5000";
 viewHome(app);
 
 // FUNÇÕES DE VIEW
@@ -14,8 +14,9 @@ function viewHome(app) {
             required
             placeholder="000.000.000-00"
             class="input"
+            name="inputBuscaCliente"
           />
-          <button class="btn btn-primary">Buscar</button>
+          <button class="btn btn-primary buscar-cliente">Buscar</button>
         </form>
      </div>
       `;
@@ -59,8 +60,14 @@ function listView(title, list = [], app) {
       data.appendChild(spanCPF);
       data.appendChild(spanTelefone);
 
+      if (element.corretor) {
+        var spanCorretor = document.createElement("span");
+        spanCorretor.innerText = element.corretor;
+        data.appendChild(spanCorretor);
+      }
+
       //criando a seção com os botões de ação
-      var actions = document.createElement("div");
+      var actions = document.createElement("form");
       actions.classList.add("actions");
 
       var btnEdit = document.createElement("button");
@@ -73,8 +80,18 @@ function listView(title, list = [], app) {
       btnDelete.classList.add("btn");
       btnDelete.classList.add("btn-delete");
 
+      var id = document.createElement("input");
+      id.value = element.id;
+      id.classList.add("hidden");
+      id.setAttribute("name", "id");
+
       actions.appendChild(btnEdit);
       actions.appendChild(btnDelete);
+      actions.appendChild(id);
+      btnDelete.addEventListener("click", (e) => {
+        e.preventDefault();
+        deleteFunction(element.id, element.corretor);
+      });
 
       //adicionado seções a lista
       li.appendChild(data);
@@ -89,40 +106,40 @@ function listView(title, list = [], app) {
     //renderizando lista
     app.append(modal);
   }
+}
 
-  const modeloDoRender = `
-  <div class="modal">
-  <h2 class="title">Corretores</h2>
-  <ul class="list">
-    <li class="list-item">
-      <div class="data">
-        <span>nome completo do Corretor</span>
-        <span>000.000.000-00</span>
-        <span>telefone</span>
-      </div>
-      <div class="actions">
-        <button class="btn btn-edit">edit</button>
-        <button class="btn btn-delete">delete</button>
-      </div>
-    </li>
-  </ul>
-</div>
-  `;
+async function deleteFunction(idRequisition, corretor) {
+  let urlDelete = "";
+  if (corretor) {
+    urlDelete += `${url}/cliente?id=${idRequisition}`;
+  } else {
+    urlDelete += `${url}/corretor/${idRequisition}`;
+  }
+
+  await fetch(urlDelete, {
+    method: "delete",
+  })
+    .then((response) => console.log(response.ok))
+    .catch((err) => console.log(err));
 }
 
 //CONTROLE DE EVENTOS
-
-//Listagem dos corretores cadastrados
-document.querySelector(".list-corretor").addEventListener("click", (e) => {
+//Procurar cliente
+var formBuscaCliente = document.querySelector("#form-home");
+formBuscaCliente.addEventListener("submit", async (e) => {
   e.preventDefault();
-  var corretores = [];
-  //Logica para recuperar dados dos corretores do banco de dados
+  var cpf = formBuscaCliente.inputBuscaCliente.value;
 
-  listView("Corretores", corretores, app);
+  await fetch(`${url}/cliente?cpf=${cpf}`)
+    .then((data) => data.json())
+    .then((response) => {
+      if (response.id) {
+        listView("Cliente", [response], app);
+      }
+    })
+    .catch((err) => {
+      alert("Error");
+    });
 });
 
-//Pagina Incial - Buscar Clientes
-document.querySelector(".client-search").addEventListener("click", (e) => {
-  e.preventDefault();
-  viewHome(app);
-});
+//Deletar Cliente
