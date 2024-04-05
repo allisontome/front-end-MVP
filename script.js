@@ -1,6 +1,6 @@
 const app = document.getElementById("app");
 var url = "http://127.0.0.1:5000";
-viewHome(app);
+
 
 // FUNÇÕES DE VIEW
 function viewHome(app) {
@@ -20,6 +20,12 @@ function viewHome(app) {
         </form>
      </div>
       `;
+}
+
+function criarSpan(text){
+  let span = document.createComment('span')
+  span.innerText = text;
+  return span;
 }
 
 function listView(title, list = [], app) {
