@@ -1,0 +1,64 @@
+.sidebar {
+    background-color: var(--primary);
+    box-shadow: 5px 0px 0px 0px var(--primary-gray);
+    padding: 40px 0 0 20px;
+    display: fixed;
+    font-size: 1.3rem;
+    width: 60px;
+    transition: .3s;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+.sidebar .menu svg {
+    margin-bottom: 30px;
+    fill: var(--white);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.navigation {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.navigation-link {
+    height: 50px;
+    display: flex;
+    cursor: pointer;
+    border-radius: 5px 0 0 5px;
+    align-items: center;
+    padding-left: 8px;
+    gap: 10px;
+}
+
+.navigation-link > svg {
+    fill: var(--white);
+    width: 22px;
+    height: 22px;
+}
+
+.navigation-link:hover {
+    background-color: var(--secondary);
+}
+
+.btn-navigation {
+    display: none;
+    color: var(--white);
+    font-size: 1.2rem;
+    transition: .3s;
+}
+
+.sidebar-width {
+    transition: .3s;
+    width: 150px;
+}
+
+.btn-display {
+    transition: .3s;
+    display: block;
+}
