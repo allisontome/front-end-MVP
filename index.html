@@ -1,67 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastra Clientes</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h2>Consultar</h2>
-        <form id="consulta">
-            <div class="inputs-form">
-                <select name="parametro" id="parametro">
-                    <option value="cliente">cliente</option>
-                    <option value="corretor">corretor</option>
-                </select>
-                <input name="cpf" type="text" maxlength="14" placeholder="Insira o cpf">
-            </div>
-            <button type="submit" name="consulta">Consultar</button>
-        </form>
-    </header>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header></header>
     <main id="app">
-        <section class="modal-dados-consultados">
-            <div class="dados-consultados">
-                <div class="dados-cliente">
-                    <span>nome</span>
-                    <span>cpf</span>
-                    <span>telefone</span>
-                    <span>endereco completo</span>
-                </div>
-                <div class="dados-corretor">
-                    <span>nome</span>
-                    <span>cpf</span>
-                    <span>telefone</span>
-                </div>
-            </div>
-            <div class="dados-manipulacao">
-                <button>Editar</button>
-                <button>Excluir</button>
-            </div>
-        </section>
-        <section class="cadastro-edicao">
-            <form id="formulario-cadastro-edicao">
-                <div class="form-container">
-                    <label for="nome">Nome: </label>
-                    <input type="text" name="nome" id="nome">
-                </div>
-                <div class="form-container">
-                    <label for="cpf">CPF: </label>
-                    <input type="text" name="cpf" id="cpf">
-                </div>
-                <div class="form-container">
-                    <label for="telefone">Telefone: </label>
-                    <input type="text" name="telefone" id="telefone">
-                </div>
-                <div class="form-endereco">
-                    <div class="form-container">
-                        <label for="telefone">Rua: </label>
-                        <input type="text" name="rua" id="rua">
-                    </div>
-                </div>
-            </form>
-        </section>
+      <section class="modal-dados-consultados"></section>
+      <section class="cadastro-edicao"></section>
     </main>
-</body>
+  </body>
+  <script type="module" src="script.js"></script>
 </html>

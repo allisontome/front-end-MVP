@@ -34,6 +34,10 @@ button {
     }
 }
 
+.hide {
+    display: none;
+}
+
 body {
     width: 100vw;
     height: auto;
@@ -146,21 +150,22 @@ main {
     border-radius: 10px;
 }
 
-#formulario-cadastro-edicao {
+#formulario-cadastro {
     width: 100%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+    align-items: start;
 }
 
-#formulario-cadastro-edicao input {
+#formulario-cadastro input {
     width: 100%;
 }
 
 .form-container {
     width: 100%;
-    min-width: 100px;
+    min-width: 300px;
     max-width: 500px;
 }
