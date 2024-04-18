@@ -9,40 +9,63 @@ export default class Cliente {
       .catch((error) => console.log(error));
   }
 
-  async post_cliente() {
-    const form = document.getElementById("formulario-cadastro-edicao");
+  async post_cliente(form) {
     const formData = new FormData(form);
     const corretor_id = form.corretor_id.value;
-
-    for (let pair of formData.entries()) {
-      formData.append(pair[0] + ":" + pair[1]);
-    }
     formData.append("corretor_id", corretor_id);
 
-    await fetch(this.url, {
-      method: "post",
-      body: formData,
-    }).then((response) => {
-      if (response.ok) {
-        return true;
-      }
-    });
+    try {
+      await fetch(this.url, {
+        method: "post",
+        body: formData,
+      }).then((response) => {
+        if (response.ok) {
+          return true;
+        }
+      });
+    }catch(err) {
+      alert(err.message)
+    }
+  }
+
+  async put_cliente(form) {
+    const formData = new FormData(form);
+    const corretor_id = form.corretor_id.value;
+    formData.append("corretor_id", corretor_id);
+
+    try {
+      await fetch(this.url, {
+        method: "put",
+        body: formData,
+      }).then((response) => {
+        if (response.ok) {
+          return true;
+        }
+      });
+      alert('cliente atualizado com sucesso')
+      return true;
+    }catch(err){
+      alert(err.message)
+    }
   }
 
   async delete_cliente(id) {
+   try{
     var bool = confirm("Deseja deletar o cliente?");
+    var deletado = false;
     if (bool) {
       return fetch(`${this.url}?id=${id}`, {
         method: "delete",
       }).then((response) => {
         if (response.ok) {
-          return true;
-        } else {
-          return false;
+          alert('Cliente excluído!')
+          return deletado = true;
         }
       });
-    } else {
-      return false;
     }
+    return deletado;
+   }catch(err){
+    alert(err.message)
+   }
   }
 }

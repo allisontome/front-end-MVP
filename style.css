@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+    list-style: none;
 }
 
 :root {
@@ -150,7 +151,7 @@ main {
     border-radius: 10px;
 }
 
-#formulario-cadastro {
+#formulario-cadastro, #formulario-edicao {
     width: 100%;
     height: auto;
     display: flex;
@@ -160,12 +161,72 @@ main {
     align-items: start;
 }
 
-#formulario-cadastro input {
+#formulario-cadastro input, #formulario-edicao input {
     width: 100%;
+    min-width: 200px;
 }
 
 .form-container {
     width: 100%;
     min-width: 300px;
     max-width: 500px;
+}
+
+/* Corretores */
+
+.modal-listagem-corretores {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-1);
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-lista {
+    min-width: 300px;
+    max-width: 800px;
+    width: 600px;
+
+    height: max-content;
+    max-width: 80%;
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 1px solid var(--border-1);
+    border-radius: 10px;
+
+    padding: 10px;
+}
+
+.modal-lista-item {
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    gap: 10px;
+    border-bottom: 1px solid var(--border-1);
+    padding-bottom: 5px;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media (max-width: 545px){
+    .modal-lista-item {
+        display: flex;
+        flex-direction: column;
+    }
+}
+.modal-lista-item .dados {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
 }

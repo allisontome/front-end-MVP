@@ -1,13 +1,9 @@
-export default class ClietneView {
+export default class ClienteView {
   init() {
     return `
-        <h2>Consultar</h2>
+        <h2>Consultar Cliente</h2>
         <form id="consulta">
         <div class="inputs-form">
-            <select name="parametro" id="parametro">
-            <option value="cliente">cliente</option>
-            <option value="corretor">corretor</option>
-            </select>
             <input
             name="cpf"
             type="text"
@@ -22,8 +18,6 @@ export default class ClietneView {
   }
 
   apresentar_dados(data) {
-    console.log(data);
-    if (!data.corretor_id) {
       return `
         <div class="dados-consultados">
           <div class="dados-cliente">
@@ -44,7 +38,65 @@ export default class ClietneView {
           <button class="btn-delete">Excluir</button>
         </div>
         `;
-    }
+
+  }
+
+  edicao(corretores, cliente) {
+    return `
+    <form method="put" id="formulario-edicao">
+    <div class="form-dados">
+      <div class="form-container">
+        <label for="nome">Nome: </label>
+        <input type="text" name="nome" id="nome" value=${cliente.nome} required />
+      </div>
+      <div class="form-container">
+        <label for="cpf">CPF: </label>
+        <input type="text" name="cpf" id="cpf" value=${cliente.cpf} disabled/>
+      </div>
+      <div class="form-container">
+        <label for="telefone">Telefone: </label>
+        <input type="text" name="telefone" id="telefone" required value=${cliente.telefone} />
+      </div>
+    </div>
+    <div class="form-endereco">
+    <div class="form-container">
+      <label for="cep">CEP: </label>
+      <input type="text" name="cep" id="cep" maxlength="9" required value=${cliente.endereco_split.cep} />
+    </div>
+    <div class="form-container">
+      <label for="rua">Rua: </label>
+      <input type="text" name="rua" id="rua" required value=${cliente.endereco_split.rua} />
+    </div>
+    <div class="form-container">
+      <label for="numero">Numero: </label>
+      <input type="text" name="numero" id="numero" required value=${cliente.endereco_split.numero} />
+    </div>
+    <div class="form-container">
+      <label for="bairro">Bairro: </label>
+      <input type="text" name="bairro" id="bairro" required value=${cliente.endereco_split.bairro} />
+    </div>
+    <div class="form-container">
+      <label for="cidade">Cidade: </label>
+      <input type="text" name="cidade" id="cidade" required value=${cliente.endereco_split.cidade} />
+    </div>
+    <div class="form-container">
+      <label for="uf">UF: </label>
+      <input type="text" name="uf" id="uf" required value=${cliente.endereco_split.uf} />
+    </div>
+    <div class="form-container">
+      <input class="hide" type="number" name="id" id="id" required value=${cliente.id} />
+    </div>
+  </div>
+  <div class="form-corretor">
+    <div class="form-container">
+      <label for="corretor_id">Corretor</label>
+      ${this.__gera_lista_de_corretores(corretores)}
+  </div>
+    <div class="form-actions">
+      <button class="btn-save">Salvar</button>
+    </div>
+  </form>
+    `;
   }
 
   cadastro(corretores) {
