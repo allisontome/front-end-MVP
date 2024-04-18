@@ -174,7 +174,7 @@ main {
 
 /* Corretores */
 
-.modal-listagem-corretores {
+.modal-listagem-corretores, .modal-cadastra-corretor {
     position: absolute;
     top: 0;
     left: 0;
@@ -229,4 +229,25 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: start;
+}
+
+#formulario-cadastra-corretor {
+    padding: 20px;
+    border: 1px solid var(--border-1);
+    border-radius: 10px;
+    min-width: 250px;
+    max-width: 600px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#formulario-cadastra-corretor label {
+    display: block;
+}
+#formulario-cadastra-corretor input {
+    width: 100%;
 }

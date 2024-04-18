@@ -20,11 +20,12 @@ export default class Cliente {
         body: formData,
       }).then((response) => {
         if (response.ok) {
+          alert("cliente cadastrado");
           return true;
         }
       });
-    }catch(err) {
-      alert(err.message)
+    } catch (err) {
+      alert(err.message);
     }
   }
 
@@ -42,30 +43,30 @@ export default class Cliente {
           return true;
         }
       });
-      alert('cliente atualizado com sucesso')
+      alert("cliente atualizado com sucesso");
       return true;
-    }catch(err){
-      alert(err.message)
+    } catch (err) {
+      alert(err.message);
     }
   }
 
   async delete_cliente(id) {
-   try{
-    var bool = confirm("Deseja deletar o cliente?");
-    var deletado = false;
-    if (bool) {
-      return fetch(`${this.url}?id=${id}`, {
-        method: "delete",
-      }).then((response) => {
-        if (response.ok) {
-          alert('Cliente excluído!')
-          return deletado = true;
-        }
-      });
+    try {
+      var bool = confirm("Deseja deletar o cliente?");
+      var deletado = false;
+      if (bool) {
+        return fetch(`${this.url}?id=${id}`, {
+          method: "delete",
+        }).then((response) => {
+          if (response.ok) {
+            alert("Cliente excluído!");
+            return (deletado = true);
+          }
+        });
+      }
+      return deletado;
+    } catch (err) {
+      alert(err.message);
     }
-    return deletado;
-   }catch(err){
-    alert(err.message)
-   }
   }
 }
